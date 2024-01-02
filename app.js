@@ -41,18 +41,25 @@ form.addEventListener("submit", async (event) => {
   const finalUrl = fruitBaseUrl + fruitPath + minQ + "&" + maxQ;
   const response = await axios.get(finalUrl);
   const fruitArr = response.data;
-  fruitArr.forEach((element) => {
+  console.log(fruitArr);
+  for (i = 0; i < fruitArr.length; i++) {
     let card = createCardElement();
-    let cardContent = createCard(element);
+    let cardContent = createCard(fruitArr[i]);
     appendChildSingle("container", card);
-    appendChildHere("card", cardContent);
-  });
+    let allCards = document.querySelectorAll(".card");
+    // allCards[i].appendChild(cardContent);
+    cardContent.forEach((info) => {
+      allCards[i].appendChild(info);
+    });
+  }
 });
 
-// let card = createCardElement();
-// let cardContent = createCard(element);
-// appendChildHere("container", card);
-// appendChildHere(card, cardContent);
+// fruitArr.forEach((element) => {
+//   let card = createCardElement();
+//   let cardContent = createCard(element);
+//   appendChildSingle("container", card);
+//   appendChildHere("card", cardContent);
+// });
 
 const fakeObject = {
   name: "Persimmon",
