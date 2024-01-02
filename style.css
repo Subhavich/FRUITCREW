@@ -64,4 +64,5 @@ h6 {
 /* Display Styling */
 .card {
   background-color: aquamarine;
+  display: flex;
 }
