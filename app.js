@@ -22,6 +22,22 @@ const fruits = axios.get(
 const fruitBaseUrl = "https://www.fruityvice.com/api/fruit/";
 
 const form = document.querySelector("#form");
+const selects = document.querySelector("select");
+const units = document.querySelectorAll(".unit");
+
+selects.addEventListener("change", (e) => {
+  console.log(e.target.value);
+  if (e.target.value != "calories") {
+    units.forEach((unit) => {
+      unit.innerHTML = "grams";
+    });
+  } else {
+    units.forEach((unit) => {
+      unit.innerHTML = "kcal";
+    });
+  }
+});
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
   resetParent("container");
@@ -90,14 +106,11 @@ const createCard = (obj) => {
   createImgContent(cardImg, obj.name);
   //is a promise
   const { calories, fat, sugar, carbohydrates, protein } = obj.nutritions;
-  const cardCal = createElementContent("p", `Calories : ${calories} Kcal`);
-  const cardFat = createElementContent("p", `Fat :${fat} grams`);
-  const cardSugar = createElementContent("p", `Sugar :${sugar} grams`);
-  const cardCarb = createElementContent(
-    "p",
-    `Carbohydrates :${carbohydrates} grams`
-  );
-  const cardProt = createElementContent("p", `Protein :${protein} grams`);
+  const cardCal = createElementContent("p", `Cal ${calories} Kcal`);
+  const cardFat = createElementContent("p", `Fat ${fat} g`);
+  const cardSugar = createElementContent("p", `Sugar ${sugar} g`);
+  const cardCarb = createElementContent("p", `Carb ${carbohydrates} g`);
+  const cardProt = createElementContent("p", `Protein ${protein} g`);
 
   return [cardName, cardImg, cardCal, cardFat, cardSugar, cardCarb, cardProt];
 };
