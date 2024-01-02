@@ -1,3 +1,4 @@
+// ---------------------------References---------------------------//
 // ***** 1. FRUITS API *****
 // https://www.fruityvice.com/api/fruit/fat?min=10&max=1000
 // calories/fat/protein/carbohydrates/sugar
@@ -9,21 +10,12 @@
 // client_id:WOZ2iILAWFD2Uryby15FTZU14RecQov4WzysJkkvK1g
 // query:q
 // https://api.unsplash.com/search/photos?client_id=WOZ2iILAWFD2Uryby15FTZU14RecQov4WzysJkkvK1g&query=apricot
-
-// UNSPLASH API
 const auth = "client_id=WOZ2iILAWFD2Uryby15FTZU14RecQov4WzysJkkvK1g";
-const q = "query=apricot";
+// const q = "query=apricot";
 const config = { header: { "Accept-Version": "v1" } };
-// UNSPLASHCALL
-// const pic = axios
-//   .get(`https://api.unsplash.com/search/photos?${auth}&${q}`, config)
-//   .then((response) => {
-//     console.log(response);
-//   });
 
-// ---------CODE STARTS HERE---------//
-// ---------CODE STARTS HERE---------//
-// ---------CODE STARTS HERE---------//
+// ---------------------------CODE STARTS HERE---------------------------//
+
 const fruits = axios.get(
   `https://www.fruityvice.com/api/fruit/fat?min=10&max=1000`
 );
@@ -45,6 +37,7 @@ form.addEventListener("submit", async (event) => {
   for (i = 0; i < fruitArr.length; i++) {
     let card = createCardElement();
     let cardContent = createCard(fruitArr[i]);
+    console.log(cardContent);
     appendChildSingle("container", card);
     let allCards = document.querySelectorAll(".card");
     // allCards[i].appendChild(cardContent);
@@ -53,13 +46,6 @@ form.addEventListener("submit", async (event) => {
     });
   }
 });
-
-// fruitArr.forEach((element) => {
-//   let card = createCardElement();
-//   let cardContent = createCard(element);
-//   appendChildSingle("container", card);
-//   appendChildHere("card", cardContent);
-// });
 
 const fakeObject = {
   name: "Persimmon",
@@ -99,8 +85,10 @@ const createCardElement = () => {
 };
 
 const createCard = (obj) => {
-  console.log(obj.name);
   const cardName = createElementContent("span", obj.name);
+  const cardImg = document.createElement("img");
+  createImgContent(cardImg, obj.name);
+  //is a promise
   const { calories, fat, sugar, carbohydrates, protein } = obj.nutritions;
   const cardCal = createElementContent("p", `Calories : ${calories} Kcal`);
   const cardFat = createElementContent("p", `Fat :${fat} grams`);
@@ -110,10 +98,26 @@ const createCard = (obj) => {
     `Carbohydrates :${carbohydrates} grams`
   );
   const cardProt = createElementContent("p", `Protein :${protein} grams`);
-  return [cardName, cardCal, cardFat, cardSugar, cardCarb, cardProt];
+
+  return [cardName, cardImg, cardCal, cardFat, cardSugar, cardCarb, cardProt];
 };
 // return [cardName, cardCal, cardFat, cardSugar, cardCarb, cardProt]
 // find a way to refactor
+const createImgContent = async (ele, q) => {
+  const response = await axios.get(
+    `https://api.unsplash.com/search/photos?${auth}&query=${q}`,
+    config
+  );
+  const link = response.data.results[0].urls.small;
+  ele.src = link;
+};
+
+// UNSPLASHCALL
+// const pic = axios
+//   .get(`https://api.unsplash.com/search/photos?${auth}&${q}`, config)
+//   .then((response) => {
+//     console.log(response);
+//   });
 
 const createElementContent = (ele, inner) => {
   const newEle = document.createElement(ele);
