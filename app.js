@@ -3,26 +3,27 @@
 // calories/fat/protein/carbohydrates/sugar
 // const config2 = { header: { "Access-Control-Allow-Origin": "*" } };
 
-// https://www.fruityvice.com/api/fruit/calories?min=2max=92
-
-// ***** 1. Image API *****
+// ***** 2. Image API *****
 // https://api.unsplash.com/search/photos/
 // Accept-Version:v1
 // client_id:WOZ2iILAWFD2Uryby15FTZU14RecQov4WzysJkkvK1g
 // query:q
 // https://api.unsplash.com/search/photos?client_id=WOZ2iILAWFD2Uryby15FTZU14RecQov4WzysJkkvK1g&query=apricot
 
-// unsplash api
+// UNSPLASH API
 const auth = "client_id=WOZ2iILAWFD2Uryby15FTZU14RecQov4WzysJkkvK1g";
 const q = "query=apricot";
 const config = { header: { "Accept-Version": "v1" } };
+// UNSPLASHCALL
 // const pic = axios
 //   .get(`https://api.unsplash.com/search/photos?${auth}&${q}`, config)
 //   .then((response) => {
 //     console.log(response);
 //   });
 
-// fruits api
+// ---------CODE STARTS HERE---------//
+// ---------CODE STARTS HERE---------//
+// ---------CODE STARTS HERE---------//
 const fruits = axios.get(
   `https://www.fruityvice.com/api/fruit/fat?min=10&max=1000`
 );
@@ -41,10 +42,17 @@ form.addEventListener("submit", async (event) => {
   const response = await axios.get(finalUrl);
   const fruitArr = response.data;
   fruitArr.forEach((element) => {
-    let card = createCard(element);
-    appendChildHere("container", card);
+    let card = createCardElement();
+    let cardContent = createCard(element);
+    appendChildSingle("container", card);
+    appendChildHere("card", cardContent);
   });
 });
+
+// let card = createCardElement();
+// let cardContent = createCard(element);
+// appendChildHere("container", card);
+// appendChildHere(card, cardContent);
 
 const fakeObject = {
   name: "Persimmon",
@@ -61,6 +69,10 @@ const fakeObject = {
   },
 };
 
+const appendChildSingle = (parentClass, child) => {
+  let parent = document.querySelector(`.${parentClass}`);
+  parent.appendChild(child);
+};
 const appendChildHere = (parentClass, childArr) => {
   let parent = document.querySelector(`.${parentClass}`);
   childArr.forEach((child) => {
@@ -71,6 +83,12 @@ const appendChildHere = (parentClass, childArr) => {
 const resetParent = (parentClass) => {
   let parent = document.querySelector(`.${parentClass}`);
   parent.innerHTML = "";
+};
+
+const createCardElement = () => {
+  const cardElement = document.createElement("div");
+  cardElement.classList.add("card");
+  return cardElement;
 };
 
 const createCard = (obj) => {
