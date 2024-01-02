@@ -144,7 +144,7 @@ i {
 /* nav */
 nav {
   padding: 1em;
-  min-height: 20vh;
+  min-height: 33vh;
   align-items: center;
   border-radius: 1em;
   display: flex;
@@ -156,6 +156,8 @@ nav h1 {
 /* header */
 header {
   min-height: 50vh;
+  grid-template-rows: 60%;
+  display: grid;
 }
 .header-grid {
   display: grid;
@@ -184,6 +186,7 @@ header {
 .tutorial {
   background-color: var(--clr-text-main);
   border-radius: 1em;
+  color: var(--clr-background-main);
 }
 
 /* Components */
@@ -192,8 +195,10 @@ header {
   width: 100%;
   max-width: 900px;
   margin: 2em auto;
+  padding: 0 1em;
 }
 .container {
+  padding: 0 1em;
   margin: 2em auto;
   width: 100%;
   max-width: 900px;
