@@ -199,7 +199,11 @@ header {
   padding: 2em;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+}
+.tutorial .underline {
+  font-weight: 900;
+  color: var(--clr-secondary-main);
 }
 .tutorial input {
   font-size: var(--fs-500);
@@ -208,16 +212,19 @@ header {
   border: none;
   border-bottom: var(--clr-secondary-main) solid 2px;
   background-color: transparent;
+  text-align: end;
   margin: 0.5rem;
 }
 .tutorial .selected {
   background-color: var(--clr-background-main);
   padding: 0.5em;
   color: var(--clr-primary-main);
+  font-weight: 900;
 }
-.tutorial .unit {
-  display: inline-block;
+.tutorial p:last-of-type {
+  text-align: end;
 }
+
 /* Components */
 
 .wrapper {
