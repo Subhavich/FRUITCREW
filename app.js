@@ -111,7 +111,6 @@ const createCard = (obj) => {
   const cardSugar = createElementContent("p", `Sugar ${sugar} g`);
   const cardCarb = createElementContent("p", `Carb ${carbohydrates} g`);
   const cardProt = createElementContent("p", `Protein ${protein} g`);
-
   return [cardName, cardImg, cardCal, cardFat, cardSugar, cardCarb, cardProt];
 };
 // return [cardName, cardCal, cardFat, cardSugar, cardCarb, cardProt]
