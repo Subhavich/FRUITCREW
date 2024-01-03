@@ -177,6 +177,9 @@ header {
   display: grid;
   text-align: end;
 }
+.unit {
+  transition: all 0.5s linear;
+}
 #form button {
   border-radius: 1em;
 }
@@ -186,6 +189,7 @@ header {
   padding: var(--fs-300);
   text-align: end;
   max-width: 30%;
+  min-width: 15ch;
   border: none;
 }
 .tutorial {
@@ -195,7 +199,7 @@ header {
   padding: 2em;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .tutorial input {
   font-size: var(--fs-500);
@@ -206,7 +210,14 @@ header {
   background-color: transparent;
   margin: 0.5rem;
 }
-
+.tutorial .selected {
+  background-color: var(--clr-background-main);
+  padding: 0.5em;
+  color: var(--clr-primary-main);
+}
+.tutorial .unit {
+  display: inline-block;
+}
 /* Components */
 
 .wrapper {
@@ -291,4 +302,13 @@ header {
     transform: scale(1);
     opacity: 1;
   }
+}
+.pre-animation {
+  opacity: 0;
+  /* max-height: 0; */
+}
+
+.highlighted {
+  background-color: var(--clr-secondary-main);
+  color: var(--clr-text-main);
 }

@@ -25,15 +25,19 @@ const selects = document.querySelector("select");
 const units = document.querySelectorAll(".unit");
 const main = document.querySelector("main");
 const amountInput = document.querySelector("#multiplier");
+const selected = document.querySelector(".selected");
 let multiplier = amountInput.value;
+
 amountInput.addEventListener("change", (num) => {
   console.log(num);
   multiplier = num.target.value;
-  console.log("muls = ", multiplier);
 });
 
 selects.addEventListener("change", (e) => {
-  console.log(e.target.value);
+  units.forEach((unit) => {
+    unit.classList.add("highlighted");
+    unit.classList.add("pre-animation");
+  });
   if (e.target.value != "calories") {
     units.forEach((unit) => {
       unit.innerHTML = "grams";
@@ -43,6 +47,17 @@ selects.addEventListener("change", (e) => {
       unit.innerHTML = "kcal";
     });
   }
+  units.forEach((unit) => {
+    setTimeout(function () {
+      unit.classList.remove("pre-animation");
+
+      setTimeout(() => {
+        unit.classList.remove("highlighted");
+      }, 100);
+    }, 100);
+  });
+
+  selected.innerHTML = e.target.value;
 });
 
 form.addEventListener("submit", async (event) => {
@@ -121,7 +136,6 @@ const createCard = (obj) => {
 
   // Math.round((nums / 100) * 100) / 10;
 
-  console.log(calories);
   const cardCal = createElementContent(
     "p",
     `Cal ${Math.round(((calories * multiplier) / 100) * 100) / 100} Kcal`
