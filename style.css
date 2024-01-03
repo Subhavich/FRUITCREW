@@ -144,7 +144,7 @@ i {
 /* nav */
 nav {
   padding: 1em;
-  min-height: 33vh;
+  min-height: 50vh;
   align-items: center;
   border-radius: 1em;
   display: flex;
@@ -185,13 +185,26 @@ header {
   font-size: var(--fs-300);
   padding: var(--fs-300);
   text-align: end;
-  max-width: 20%;
+  max-width: 30%;
   border: none;
 }
 .tutorial {
   background-color: var(--clr-text-main);
   border-radius: 1em;
   color: var(--clr-background-main);
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.tutorial input {
+  font-size: var(--fs-500);
+  font-weight: 900;
+  color: var(--clr-background-main);
+  border: none;
+  border-bottom: var(--clr-secondary-main) solid 2px;
+  background-color: transparent;
+  margin: 0.5rem;
 }
 
 /* Components */
@@ -216,6 +229,11 @@ header {
 @media (max-width: 40rem) {
   .container {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 30rem) {
+  .container {
+    grid-template-columns: 1fr;
   }
 }
 .card {
