@@ -265,7 +265,15 @@ header {
   border-radius: 10px;
   padding: 1em;
   animation: append-animate 0.3s linear;
+  transition: all 0.3s linear;
 }
+
+.card:hover {
+  translate: 5px -5px;
+  background-color: var(--clr-secondary-main);
+  box-shadow: -10px 10px var(--clr-primary-main);
+}
+
 .card img {
   height: 100%;
   width: 100%;
