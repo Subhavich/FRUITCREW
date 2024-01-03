@@ -11,7 +11,6 @@
 // query:q
 // https://api.unsplash.com/search/photos?client_id=WOZ2iILAWFD2Uryby15FTZU14RecQov4WzysJkkvK1g&query=apricot
 const auth = "client_id=WOZ2iILAWFD2Uryby15FTZU14RecQov4WzysJkkvK1g";
-// const q = "query=apricot";
 const config = { header: { "Accept-Version": "v1" } };
 
 // ---------------------------CODE STARTS HERE---------------------------//
@@ -25,6 +24,13 @@ const form = document.querySelector("#form");
 const selects = document.querySelector("select");
 const units = document.querySelectorAll(".unit");
 const main = document.querySelector("main");
+const amountInput = document.querySelector("#multiplier");
+let multiplier = amountInput.value;
+amountInput.addEventListener("change", (num) => {
+  console.log(num);
+  multiplier = num.target.value;
+  console.log("muls = ", multiplier);
+});
 
 selects.addEventListener("change", (e) => {
   console.log(e.target.value);
@@ -42,7 +48,7 @@ selects.addEventListener("change", (e) => {
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
   resetParent("container");
-  console.log(event.target[0].value);
+
   const pathQ = event.target[0].value + "?";
   const minQ = "min=" + event.target[1].value;
   const maxQ = "max=" + event.target[2].value;
@@ -50,11 +56,11 @@ form.addEventListener("submit", async (event) => {
   const finalUrl = fruitBaseUrl + fruitPath + minQ + "&" + maxQ;
   const response = await axios.get(finalUrl);
   const fruitArr = response.data;
-  console.log(fruitArr);
+
   for (i = 0; i < fruitArr.length; i++) {
     let card = createCardElement();
     let cardContent = createCard(fruitArr[i]);
-    console.log(cardContent);
+
     appendChildSingle("container", card);
     let allCards = document.querySelectorAll(".card");
     // allCards[i].appendChild(cardContent);
@@ -112,11 +118,30 @@ const createCard = (obj) => {
   createImgContent(cardImg, obj.name);
   //is a promise
   const { calories, fat, sugar, carbohydrates, protein } = obj.nutritions;
-  const cardCal = createElementContent("p", `Cal ${calories} Kcal`);
-  const cardFat = createElementContent("p", `Fat ${fat} g`);
-  const cardSugar = createElementContent("p", `Sugar ${sugar} g`);
-  const cardCarb = createElementContent("p", `Carb ${carbohydrates} g`);
-  const cardProt = createElementContent("p", `Protein ${protein} g`);
+
+  // Math.round((nums / 100) * 100) / 10;
+
+  console.log(calories);
+  const cardCal = createElementContent(
+    "p",
+    `Cal ${Math.round(((calories * multiplier) / 100) * 100) / 100} Kcal`
+  );
+  const cardFat = createElementContent(
+    "p",
+    `Fat ${Math.round(((fat * multiplier) / 100) * 100) / 100} g`
+  );
+  const cardSugar = createElementContent(
+    "p",
+    `Sugar ${Math.round(((sugar * multiplier) / 100) * 100) / 100} g`
+  );
+  const cardCarb = createElementContent(
+    "p",
+    `Carb ${Math.round(((carbohydrates * multiplier) / 100) * 100) / 100} g`
+  );
+  const cardProt = createElementContent(
+    "p",
+    `Protein ${Math.round(((protein * multiplier) / 100) * 100) / 100} g`
+  );
   return [cardName, cardImg, cardCal, cardFat, cardSugar, cardCarb, cardProt];
 };
 // return [cardName, cardCal, cardFat, cardSugar, cardCarb, cardProt]
