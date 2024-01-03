@@ -164,6 +164,11 @@ header {
   grid-template-columns: 2fr 1fr;
   gap: 1em;
 }
+@media (max-width: 40rem) {
+  .header-grid {
+    grid-template-columns: 1fr;
+  }
+}
 #form {
   background-color: var(--clr-primary-main);
   color: var(--clr-background-main);
@@ -206,6 +211,12 @@ header {
   grid-template-columns: repeat(3, 1fr);
   grid-auto-flow: 40vh;
   gap: 1em;
+}
+
+@media (max-width: 40rem) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .card {
   background-color: var(--clr-primary-light);
