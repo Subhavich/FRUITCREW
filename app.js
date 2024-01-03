@@ -24,6 +24,7 @@ const fruitBaseUrl = "https://www.fruityvice.com/api/fruit/";
 const form = document.querySelector("#form");
 const selects = document.querySelector("select");
 const units = document.querySelectorAll(".unit");
+const main = document.querySelector("main");
 
 selects.addEventListener("change", (e) => {
   console.log(e.target.value);
@@ -59,6 +60,11 @@ form.addEventListener("submit", async (event) => {
     // allCards[i].appendChild(cardContent);
     cardContent.forEach((info) => {
       allCards[i].appendChild(info);
+    });
+    main.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
     });
   }
 });
