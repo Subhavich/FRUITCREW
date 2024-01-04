@@ -15,11 +15,20 @@ const config = { header: { "Accept-Version": "v1" } };
 
 // ---------------------------CODE STARTS HERE---------------------------//
 
-const fruits = axios.get(
-  `https://www.fruityvice.com/api/fruit/fat?min=10&max=1000`
-);
-const fruitBaseUrl = "https://www.fruityvice.com/api/fruit/";
+let fruits = [];
+axios
+  .get(`https://www.fruityvice.com/api/fruit/fat?min=10&max=1000`)
+  .then((result) => {
+    let fruits = result;
+  })
+  .catch((error) => {
+    setTimeout(() => {
+      errorMsg.style.display = "block";
+    }, 200);
+  });
 
+const fruitBaseUrl = "https://www.fruityvice.com/api/fruit/";
+const errorMsg = document.querySelector(".error-msg");
 const form = document.querySelector("#form");
 const selects = document.querySelector("select");
 const units = document.querySelectorAll(".unit");
