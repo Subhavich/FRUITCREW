@@ -224,6 +224,9 @@ header {
 .tutorial p:last-of-type {
   text-align: end;
 }
+.tutorial label {
+  line-height: 2;
+}
 
 /* Components */
 
